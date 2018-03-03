@@ -1,0 +1,26 @@
+<mat-card class='mat-elevation-z10'>
+  <mat-card-content>
+      <form class="form-container" [formGroup]="userRegisterForm" novalidate>
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput placeholder="username" [formControlName]="'userName'">
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="password" placeholder="password" [formControlName]="'userPassword'">
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="password" placeholder="confirmpassword" [formControlName]="'userConfirmPassword'">
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <button type="submit" mat-raised-button color="primary" [disabled]="!userRegisterForm.valid">
+            Submit
+          </button>
+          </div>
+      </form>
+  </mat-card-content>
+</mat-card>
