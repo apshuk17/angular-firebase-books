@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
+import { AngularFireModule } from 'angularfire2';
+import { firebaseConfig } from '../environments/firebase.config';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +29,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatSidenavModule,
     MatListModule,
     MatToolbarModule,
+    AngularFireModule.initializeApp(firebaseConfig),
     AppRoutingModule,
   ],
   providers: [],
