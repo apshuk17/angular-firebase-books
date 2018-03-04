@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { PasswordValidation } from '../password-validation';
 
 @Component({
   selector: 'app-user-register',
@@ -14,9 +15,12 @@ export class UserRegisterComponent implements OnInit {
 
   createForm() {
     this.userRegisterForm = this.fb.group({
-      userName: ['', Validators.required],
+      userName: ['', [Validators.required, Validators.email]],
       userPassword: ['', Validators.required],
       userConfirmPassword: ['', Validators.required]
+    },
+    {
+      validator: PasswordValidation.validatePassword
     });
   }
 
