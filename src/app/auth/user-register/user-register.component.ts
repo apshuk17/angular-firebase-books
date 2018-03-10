@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { PasswordValidation } from '../password-validation';
 import { AuthFirebaseService } from '../../services/auth-firebase.service';
 import { UserProfile } from '../../model/user-profile';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { AuthDialogComponent } from '../../auth-dialog/auth-dialog.component';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
@@ -22,6 +24,7 @@ export class UserRegisterComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
             private authFirebaseService: AuthFirebaseService,
+            private dialog: MatDialog,
             private router: Router) { }
 
   createForm() {
@@ -37,9 +40,6 @@ export class UserRegisterComponent implements OnInit {
   }
 
   resetForm() {
-    // this.userRegisterForm.setValue({
-    //   userName: '', userPassword: '', userConfirmPassword: '', userRole: ''
-    // });
     this.userRegisterForm.reset();
 
     Object.keys(this.userRegisterForm.controls).forEach(key => {
@@ -55,6 +55,12 @@ export class UserRegisterComponent implements OnInit {
     };
   }
 
+  createDialogRef({email, role}): MatDialogConfig {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {email, role};
+    return dialogConfig;
+  }
+
   signUp() {
     let userProfile: UserProfile;
     const email = this.userRegisterForm.value['userName'];
@@ -65,12 +71,20 @@ export class UserRegisterComponent implements OnInit {
       if (res.uid) {
         userProfile = this.createUserProfile(res.uid, res.email, role);
         this.resetForm();
+
+        // // Creating dialog modal ref
+        // const dialogData = {email: res.email, role: res.role};
+        // const authDialogRef = this.createDialogRef(dialogData);
+        // this.dialog.open(AuthDialogComponent, authDialogRef);
+
+        // Adding user to database
         return this.authFirebaseService.addNewUser(userProfile);
       } else {
         return Observable.of({uid: '', email: '', role: '', message: res.message});
       }
     })
     .subscribe(res => {
+      console.log(res);
       if (res.message) {
         alert(res.message);
       }

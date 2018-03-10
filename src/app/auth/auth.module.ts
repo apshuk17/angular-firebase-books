@@ -14,10 +14,12 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { AuthFirebaseService } from '../services/auth-firebase.service';
+import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
 
 @NgModule({
   imports: [
@@ -30,11 +32,13 @@ import { AuthFirebaseService } from '../services/auth-firebase.service';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatDialogModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AuthRoutingModule
   ],
   providers: [AuthFirebaseService],
-  declarations: [AuthenticationComponent, UserRegisterComponent, UserLoginComponent]
+  declarations: [AuthenticationComponent, UserRegisterComponent, UserLoginComponent, AuthDialogComponent],
+  entryComponents: [AuthDialogComponent]
 })
 export class AuthModule { }
