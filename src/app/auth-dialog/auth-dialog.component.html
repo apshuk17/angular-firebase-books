@@ -1,3 +1,6 @@
-<p>
-  {{email}} is successfully added as {{role}}
+<p *ngIf="status; else loginError">
+  {{email}} is successfully registered as {{role}}. For login go to the login tab. 
 </p>
+<ng-template #loginError>
+  {{message}}
+</ng-template>

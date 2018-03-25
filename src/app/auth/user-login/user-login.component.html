@@ -1,6 +1,6 @@
 <mat-card class='mat-elevation-z10'>
     <mat-card-content>
-        <form class="form-container" [formGroup]="userLoginForm" novalidate>
+        <form class="form-container" [formGroup]="userLoginForm" novalidate (ngSubmit)="onLogin()">
           <div class="form-group">
             <mat-form-field>
               <input matInput placeholder="Email" [formControlName]="'userName'">

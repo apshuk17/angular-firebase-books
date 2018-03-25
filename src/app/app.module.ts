@@ -14,6 +14,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { CommonService } from './services/common.service';
+import { HttpService } from './services/http.service';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -30,9 +33,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatListModule,
     MatToolbarModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    AuthModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [CommonService, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

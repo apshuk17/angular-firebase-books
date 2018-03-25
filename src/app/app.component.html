@@ -16,8 +16,11 @@
     <button mat-icon-button (click)="start.open()">
       <mat-icon>menu</mat-icon>
     </button>
+    <button *ngIf="showSignOut$ | async"
+    [ngStyle]="{position: 'absolute', right: '20px'}"
+    color="accent"
+    mat-raised-button (click)="signOut()">Signout</button>
   </mat-toolbar>
-
   <main class="container">
     <router-outlet></router-outlet>
   </main>

@@ -20,6 +20,7 @@ import { UserRegisterComponent } from './user-register/user-register.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { AuthFirebaseService } from '../services/auth-firebase.service';
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
+import { DbFirebaseService } from '../services/db-firebase.service';
 
 @NgModule({
   imports: [
@@ -37,7 +38,7 @@ import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
     AngularFireDatabaseModule,
     AuthRoutingModule
   ],
-  providers: [AuthFirebaseService],
+  providers: [AuthFirebaseService, DbFirebaseService],
   declarations: [AuthenticationComponent, UserRegisterComponent, UserLoginComponent, AuthDialogComponent],
   entryComponents: [AuthDialogComponent]
 })

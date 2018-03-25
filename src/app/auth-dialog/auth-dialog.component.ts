@@ -10,11 +10,14 @@ export class AuthDialogComponent implements OnInit {
 
   email: string;
   role: string;
+  status: boolean;
+  message: string;
 
   constructor(@Inject(MAT_DIALOG_DATA) data) {
-    console.log(data);
     this.email = data.email;
     this.role = data.role;
+    this.status = data.status;
+    this.message = data.message;
    }
 
   ngOnInit() {
